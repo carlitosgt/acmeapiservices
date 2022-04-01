@@ -16,7 +16,7 @@ namespace API.Data
         }
 
         public DbSet<Encuesta> Encuestas { get; set; }
-        //public DbSet<Cliente> Clientes { get; set; }
+        
         public DbSet<User> Users { get; set; }
 
     }
