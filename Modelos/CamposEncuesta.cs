@@ -23,6 +23,7 @@ namespace APIsurveys.Modelos
         public string TituloCampo { get; set; }
         [Required]
         public bool EsRequerido { get; set; }
+        public string Respuesta { get; set; }
         [Required]
         public TipoCampo tipoCampo { get; set; }
 

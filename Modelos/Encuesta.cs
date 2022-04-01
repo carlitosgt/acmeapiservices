@@ -17,6 +17,7 @@ namespace APIsurveys.Modelos
         public string Descripcion { get; set; }
         public string? LinkEncuesta { get; set; }
         public DateTime? FechaCreacion { get; set; }
+        public DateTime FechaModificacion { get; set; }
         [Required]
         // Modificación: conexión con Usuario
         public int IdUser { get; set; }

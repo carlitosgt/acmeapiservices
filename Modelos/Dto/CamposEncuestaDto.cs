@@ -15,7 +15,7 @@ namespace APIsurveys.Modelos.Dto
         public string TituloCampo { get; set; }
 
         public bool EsRequerido { get; set; }
-
+        public string Respuesta { get; set; }
         public int tipoCampo { get; set; }
 
         public int? IdEncuesta { get; set; }

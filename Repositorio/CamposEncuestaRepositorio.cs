@@ -76,6 +76,13 @@ namespace APIsurveys.Repositorio
             return _mapper.Map<List<CamposEncuestaDto>>(lista);
         }
 
-        
+        public async Task<List<CamposEncuestaDto>> ByIdEncuesta(int id)
+        {
+            var result = await _db.CamposEncuesta.Where(m => m.IdEncuesta == id).ToListAsync();
+            
+            return _mapper.Map<List<CamposEncuestaDto>>(result);
+        }
+
+
     }
 }

@@ -63,6 +63,7 @@ namespace APIsurveys.Controllers
         // PUT: api/encuesta/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutEncuesta(int id, EncuestaDto encuestaDto)
         {
             try
@@ -84,7 +85,7 @@ namespace APIsurveys.Controllers
         // POST: api/Encuestas
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-
+        [Authorize]
         public async Task<ActionResult<Encuesta>> PostEncuesta(EncuestaDto encuestaDto)
         {
             try
@@ -107,6 +108,7 @@ namespace APIsurveys.Controllers
 
         // DELETE: api/encuesta/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteEncuesta(int id)
         {
             try

@@ -11,6 +11,7 @@ namespace APIsurveys.Repositorio
         Task<List<CamposEncuestaDto>> Get();
 
         Task<CamposEncuestaDto> ById(int id);
+        Task<List<CamposEncuestaDto>> ByIdEncuesta(int id);
 
         Task<CamposEncuestaDto> CreateUpdate(CamposEncuestaDto encuestaDto);
 

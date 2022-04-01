@@ -1,6 +1,7 @@
 ﻿using APIsurveys.Modelos;
 using APIsurveys.Modelos.Dto;
 using APIsurveys.Repositorio;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace APIsurveys.Controllers
             {
                 var lista = await _repositorio.Get();
                 _response.Result = lista;
-                _response.DisplayMessage = "Lista de Encuestas";
+                _response.DisplayMessage = "Lista de Campos";
             }
             catch (Exception ex)
             {
@@ -45,6 +46,8 @@ namespace APIsurveys.Controllers
         // PUT: api/encuesta/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize]
+
         public async Task<IActionResult> PutCampoEncuesta(int id, CamposEncuestaDto encuestaDto)
         {
             try
@@ -65,9 +68,30 @@ namespace APIsurveys.Controllers
 
         // GET: api/encuesta/5
         [HttpGet("{id}")]
+        [Authorize]
+
         public async Task<ActionResult<CamposEncuesta>> GetCampoEncuestaBy(int id)
         {
             var encuesta = await _repositorio.ById(id);
+            if (encuesta == null)
+            {
+                _response.IsSuccess = false;
+                _response.DisplayMessage = "No hay campos";
+                return NotFound(_response);
+            }
+            _response.Result = encuesta;
+            _response.DisplayMessage = "Informacion de los campos";
+            return Ok(_response);
+        }
+
+        // GET: api/encuesta/5
+        [HttpGet]
+        [Route("GetListaCamposByIdEncuesta/{id}")]
+        
+
+        public async Task<ActionResult<CamposEncuesta>> GetListaCamposByIdEncuesta(int id)
+        {
+            var encuesta = await _repositorio.ByIdEncuesta(id);
             if (encuesta == null)
             {
                 _response.IsSuccess = false;
@@ -82,14 +106,14 @@ namespace APIsurveys.Controllers
         // POST: api/Encuestas
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-
+        [Authorize]
         public async Task<ActionResult<CamposEncuesta>> PostCampoEncuesta(CamposEncuestaDto encuestaDto)
         {
             try
             {
                 CamposEncuestaDto model = await _repositorio.CreateUpdate(encuestaDto);
                 _response.Result = model;
-                return CreatedAtAction("GetCampoEncuestaBy", new { id = model.IdCampoEncuesta }, _response);
+                return CreatedAtAction("GetListaCamposByIdEncuesta", new { id = model.IdEncuesta }, _response);
             }
             catch (Exception ex)
             {
