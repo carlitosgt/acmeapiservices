@@ -7,5 +7,6 @@ Uso de CRUD para poder crear, listar, registrar, eliminar encuestas.
 1.   Descargar el proyecto, actualizar las dependencias.
 2.   Ejecutar el paso inicial ef para crear y/o Cargar la base de datos.
 3.   Correr el proyecto
+4.   Utilizar SWAGGER para realizar las pruebas CRUD de Login, Encuestas, Campos de la encuesta.
 
 
