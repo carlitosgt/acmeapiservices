@@ -1,6 +1,6 @@
-﻿using API.Modelos;
-using API.Modelos.Dto;
-using API.Repositorio;
+﻿using APIsurveys.Modelos;
+using APIsurveys.Modelos.Dto;
+using APIsurveys.Repositorio;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace API.Controllers
+namespace APIsurveys.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

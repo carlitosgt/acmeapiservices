@@ -1,6 +1,6 @@
-﻿using API.Data;
-using API.Modelos;
-using API.Modelos.Dto;
+﻿using APIsurveys.Data;
+using APIsurveys.Modelos;
+using APIsurveys.Modelos.Dto;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 
-namespace API.Repositorio
+namespace APIsurveys.Repositorio
 {
     public class EncuestaRepositorio : IEncuestaRepositorio
     {
@@ -24,6 +24,7 @@ namespace API.Repositorio
 
         public async Task<EncuestaDto> CreateUpdate(EncuestaDto encuestaDto)
         {
+            
             Encuesta encuesta = _mapper.Map<EncuestaDto, Encuesta>(encuestaDto);
             if (encuesta.IdEncuesta > 0)
             {
@@ -33,7 +34,9 @@ namespace API.Repositorio
             {
                 await _db.Encuestas.AddAsync(encuesta);
             }
+            
             await _db.SaveChangesAsync();
+            
             return _mapper.Map<Encuesta, EncuestaDto>(encuesta);
         }
 

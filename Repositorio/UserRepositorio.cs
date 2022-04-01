@@ -1,5 +1,6 @@
-﻿using API.Data;
-using API.Modelos;
+﻿using APIsurveys.Data;
+using APIsurveys.Modelos;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -10,18 +11,20 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace API.Repositorio
+namespace APIsurveys.Repositorio
 {
     public class UserRepositorio : IUserRepositorio
     {
 
         private readonly ApplicationDbContext _db;
         private readonly IConfiguration _configuration;
+        private IMapper _mapper;
 
         public UserRepositorio(ApplicationDbContext db, IConfiguration configuration)
         {
             _db = db;
             _configuration = configuration;
+
         }
 
         public async Task<string> Login(string userName, string password)
@@ -79,6 +82,12 @@ namespace API.Repositorio
             return false;
         }
 
+        //public async Task<List<UserDto>> GetEncuestas()
+        //{
+        //    List<User> lista = await _db.Encuestas.ToListAsync();
+
+        //    return _mapper.Map<List<EncuestaDto>>(lista);
+        //}
 
         private void CrearPasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {

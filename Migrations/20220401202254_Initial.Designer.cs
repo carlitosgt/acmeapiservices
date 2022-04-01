@@ -4,54 +4,22 @@ using APIsurveys.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace APIsurveys.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220401202254_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("APIsurveys.Modelos.CamposEncuesta", b =>
-                {
-                    b.Property<int>("IdCampoEncuesta")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("EncuestaIdEncuesta")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("EsRequerido")
-                        .HasColumnType("bit");
-
-                    b.Property<int?>("IdEncuesta")
-                        .HasColumnType("int");
-
-                    b.Property<string>("NombreCampo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TituloCampo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("tipoCampo")
-                        .HasColumnType("int");
-
-                    b.HasKey("IdCampoEncuesta");
-
-                    b.HasIndex("EncuestaIdEncuesta");
-
-                    b.ToTable("CamposEncuesta");
-                });
 
             modelBuilder.Entity("APIsurveys.Modelos.Encuesta", b =>
                 {
@@ -110,11 +78,36 @@ namespace APIsurveys.Migrations
 
             modelBuilder.Entity("APIsurveys.Modelos.CamposEncuesta", b =>
                 {
-                    b.HasOne("APIsurveys.Modelos.Encuesta", "Encuesta")
-                        .WithMany()
-                        .HasForeignKey("EncuestaIdEncuesta");
+                    b.Property<int>("IdCampoEncuesta")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Navigation("Encuesta");
+                    b.Property<int?>("EncuestaIdEncuesta")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("EsRequerido")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("IdEncuesta")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NombreCampo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TituloCampo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("tipoCampo")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdCampoEncuesta");
+
+                    b.HasIndex("EncuestaIdEncuesta");
+
+                    b.ToTable("CamposEncuesta");
                 });
 
             modelBuilder.Entity("APIsurveys.Modelos.Encuesta", b =>
@@ -124,6 +117,15 @@ namespace APIsurveys.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("APIsurveys.Modelos.CamposEncuesta", b =>
+                {
+                    b.HasOne("APIsurveys.Modelos.Encuesta", "Encuesta")
+                        .WithMany()
+                        .HasForeignKey("EncuestaIdEncuesta");
+
+                    b.Navigation("Encuesta");
                 });
 
             modelBuilder.Entity("APIsurveys.Modelos.User", b =>

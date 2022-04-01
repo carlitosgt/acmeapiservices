@@ -1,10 +1,10 @@
-﻿using API.Modelos.Dto;
+﻿using APIsurveys.Modelos.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace API.Repositorio
+namespace APIsurveys.Repositorio
 {
     public interface IEncuestaRepositorio
     {

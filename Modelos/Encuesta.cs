@@ -1,10 +1,11 @@
-﻿using System;
+﻿using APIsurveys.Modelos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace API.Modelos
+namespace APIsurveys.Modelos
 {
     public class Encuesta
     {
@@ -14,13 +15,13 @@ namespace API.Modelos
         public string NombreEncuesta { get; set; }
         [Required]
         public string Descripcion { get; set; }
+        public string? LinkEncuesta { get; set; }
+        public DateTime? FechaCreacion { get; set; }
         [Required]
-        public string LinkEncuesta { get; set; }
-        [Required]
-        public DateTime FechaCreacion { get; set; }
-        [Required]
+        // Modificación: conexión con Usuario
         public int IdUser { get; set; }
         public User User { get; set; }
+
 
     }
 }

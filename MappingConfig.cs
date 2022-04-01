@@ -1,12 +1,8 @@
-﻿using API.Modelos;
-using API.Modelos.Dto;
+﻿using APIsurveys.Modelos;
+using APIsurveys.Modelos.Dto;
 using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace API
+namespace APIsurveys
 {
     public class MappingConfig
     {
@@ -14,9 +10,11 @@ namespace API
         {
             var mappingConfig = new MapperConfiguration(config =>
             {
-                //config.CreateMap<ClienteDto, Cliente>();
-                //config.CreateMap<Cliente, ClienteDto>();
-                
+                config.CreateMap<CamposEncuestaDto, CamposEncuesta>();
+                config.CreateMap<CamposEncuesta, CamposEncuestaDto>();
+                config.CreateMap<EncuestaDto, Encuesta>();
+                config.CreateMap<Encuesta, EncuestaDto>();
+
             });
 
             return mappingConfig;
